@@ -1,0 +1,10 @@
+.nav-tabs {
+    .nav-item {
+        button {
+            color: black;
+            &.active {
+                color: #ec6272;
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.card{
+    img{
+        width: 100px;
+        margin: auto;
+    }
+    .edit{
+        font-size: 16px;
+        cursor: pointer;
+    }
+    &.notUser{
+        background-color: #f49e7c;
+    }
+}

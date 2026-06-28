@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'bootstrap/scss/bootstrap' as *;
+@use '@fortawesome/fontawesome-free/scss/fontawesome' as *;
+@use '@fortawesome/fontawesome-free/scss/brands' as *;
+@use '@fortawesome/fontawesome-free/scss/solid' as *;
+@use '@fortawesome/fontawesome-free/scss/regular' as *;
+
+body {
+    background: #232526;
+    background: -webkit-linear-gradient(to left, #414345, #232526);
+    background: linear-gradient(to left, #414345, #232526);
+}
