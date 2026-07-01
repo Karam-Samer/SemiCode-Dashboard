@@ -4,14 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })
 export class UserComponent {
   @Input() user!: any;
-  field='';
-  value=''
+  @Input() isEditable = false;
+  field = '';
+  value = ''
+  emailRegex = /^[A-Za-z]+[A-Za-z0-9\-.]+@(gmail|yahoo|outlook)\.(com|org|net)$/;
+
 
   userInfo = [
     { label: 'Email', key: 'email' },
@@ -20,9 +23,6 @@ export class UserComponent {
     { label: 'Age', key: 'age' },
     { label: 'Job', key: 'jobTitle' },
   ];
-  get isEditable(): boolean {
-    return this.user?.email === 'Matya032@gmail.com';
-  }
   get isAdmin(): boolean {
     return this.user?.admin === true;
   }
@@ -33,7 +33,27 @@ export class UserComponent {
     this.field = field;
     this.value = value;
   }
-  saveChanges() {
-  this.user[this.field] = this.value;
-}
+  get canDismissModal(): boolean {
+    return this.field !== 'email' || this.emailRegex.test(this.value);
+  }
+  saveChanges(): boolean {
+    if (this.field === 'email') {
+      if (!this.emailRegex.test(this.value)) {
+        alert('Please enter a valid email address');
+        return false;
+      }
+    }
+
+    this.user[this.field] = this.value;
+    return true;
+  }
+
+  getInputType(field: string): string {
+    if (field === 'password') {
+      return 'password';
+    }
+    else {
+      return 'text';
+    }
+  }
 }

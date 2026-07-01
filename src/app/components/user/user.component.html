@@ -45,10 +45,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input type="text" class="form-control" [(ngModel)]="value">
+        @if (field === 'gender') {
+        <select class="form-select mt-3" [(ngModel)]="value">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        }@else {
+        <input [type]="getInputType(field)" class="form-control" [(ngModel)]="value">
+        }
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info text-white" data-bs-dismiss="modal" (click)="saveChanges()">Save changes</button>
+        <button type="button" class="btn btn-info text-white" [attr.data-bs-dismiss]="canDismissModal ? 'modal' : null" (click)="saveChanges()">Save
+          changes</button>
       </div>
     </div>
   </div>
